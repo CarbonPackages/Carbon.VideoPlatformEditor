@@ -1,0 +1,9 @@
+{
+    "name": "@carbon/videoplatformeditor-core",
+    "license": "GPL-3.0",
+    "main": "./src/index.ts",
+    "version": "",
+    "dependencies": {
+        "typesafe-actions": "~5.1.0"
+    }
+}

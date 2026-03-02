@@ -1,0 +1,10 @@
+Neos:
+  Neos:
+    Ui:
+      resources:
+        javascript:
+          '@carbon/videoplatformeditor':
+            resource: 'resource://Carbon.VideoPlatformEditor/Public/JavaScript/Plugin.js'
+        stylesheets:
+          '@carbon/videoplatformeditor':
+            resource: 'resource://Carbon.VideoPlatformEditor/Public/JavaScript/Plugin.css'
