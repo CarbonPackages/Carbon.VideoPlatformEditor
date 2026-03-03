@@ -1,0 +1,19 @@
+Neos:
+  Flow:
+    security:
+      authentication:
+        providers:
+          'Neos.Neos:Backend':
+            requestPatterns:
+              'Carbon.VideoPlatformEditor:Endpoints':
+                pattern: ControllerObjectName
+                patternOptions:
+                  controllerObjectNamePattern: Carbon\VideoPlatformEditor\Controller\.*
+    mvc:
+      routes:
+        'Carbon.VideoPlatformEditor:Endpoints':
+          position: 'before Neos.Neos'
+          providerFactory: Neos\Flow\Mvc\Routing\AttributeRoutesProviderFactory
+          providerOptions:
+            classNames:
+              - Carbon\VideoPlatformEditor\Controller\*Controller

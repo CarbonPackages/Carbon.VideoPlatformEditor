@@ -8,3 +8,9 @@ Neos:
         stylesheets:
           '@carbon/videoplatformeditor':
             resource: 'resource://Carbon.VideoPlatformEditor/Public/JavaScript/Plugin.css'
+
+    userInterface:
+      inspector:
+        dataTypes:
+          Carbon\VideoPlatformEditor\Video:
+            editor: Carbon.VideoPlatformEditor/Inspector/Editors/VideoPlatformEditor

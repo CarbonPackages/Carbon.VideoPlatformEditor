@@ -1,0 +1,1 @@
+export {createInspectorEditor} from './InspectorEditor';

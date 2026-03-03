@@ -7,7 +7,7 @@
         "watch": "node esbuild.js --watch"
     },
     "dependencies": {
-        "@neos-project/neos-ui-extensibility": "~9.1.4",
-        "@carbon/videoplatformeditor-core": "workspace:*"
+        "@carbon/videoplatformeditor-core": "workspace:*",
+        "@neos-project/neos-ui-extensibility": "~9.1.4"
     }
 }
