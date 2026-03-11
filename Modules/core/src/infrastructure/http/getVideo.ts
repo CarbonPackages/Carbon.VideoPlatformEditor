@@ -1,20 +1,16 @@
 import {fetchWithErrorHandling} from '@neos-project/neos-ui-backend-connector';
+import {IVideo} from "../../domain";
 
 type GetVideoQuery = {
-    videoId: string;
+    videoUri: string;
 };
 
 type GetVideoQueryResultEnvelope =
     | {
-          success: {
-              posterImageId: string;
-              videoTitle: string;
-          };
+          success: IVideo;
       }
     | {
           error: {
-              type: string;
-              code: number;
               message: string;
           };
       };
@@ -34,7 +30,7 @@ export async function getVideo(
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    id: query.videoId
+                    videoUri: query.videoUri
                 })
             })
         );

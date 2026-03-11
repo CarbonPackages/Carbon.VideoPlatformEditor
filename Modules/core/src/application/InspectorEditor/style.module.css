@@ -1,0 +1,17 @@
+
+.buttonRow {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 1rem;
+}
+
+.loader {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 40px;
+}
+
+.searchBar {
+    display: flex;
+}

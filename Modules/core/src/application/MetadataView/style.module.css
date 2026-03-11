@@ -1,0 +1,63 @@
+.infoView {
+    --space-between: 10px;
+
+    user-select: none;
+    display: inline-block;
+    vertical-align: top;
+    width: 100%;
+    line-height: 20px;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: scroll;
+    font-size: var(--fontSize-Base);
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    transition: none;
+}
+
+.propertyLabel {
+    font-weight: normal;
+    margin: 0;
+    padding: var(--space-between) 0 2px;
+    font-size: var(--fontSize-Small);
+    color: var(--colors-ContrastBright);
+
+    &:first-child {
+        padding-top: 0;
+    }
+}
+
+.propertyValue {
+    margin: 0;
+    padding: 0 0 var(--space-between);
+    white-space: nowrap;
+
+    &:last-child {
+        padding-bottom: 0;
+    }
+}
+
+.propertyValue a {
+    color: #fff;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: block;
+    width: 100%;
+
+    &:is(:hover, :focus) {
+        color: var(--colors-PrimaryBlue);
+    }
+}
+
+.propertyValue img {
+    width: 100%;
+    height: auto;
+}
+
+.details {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background: rgb(50, 50, 50);
+}
