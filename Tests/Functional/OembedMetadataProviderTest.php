@@ -30,10 +30,10 @@ class OembedMetadataProviderTest extends FunctionalTestCase
         self::assertEquals('video', $metadata->type);
         self::assertEquals('7 unzerstörbare Motorräder', $metadata->title);
         self::assertEquals('ChainBrothers', $metadata->authorName);
-        self::assertEquals(356, $metadata->width);
-        self::assertEquals(200, $metadata->height);
+        self::assertEquals(200, $metadata->width);
+        self::assertEquals(113, $metadata->height);
         self::assertEquals('https://i.ytimg.com/vi/warC3CxMtOE/hqdefault.jpg', $metadata->thumbnailUrl);
-        self::assertEquals(null, $metadata->duration);
+        self::assertNull($metadata->tryGetNonStandardDuration());
     }
 
     /**
@@ -51,6 +51,6 @@ class OembedMetadataProviderTest extends FunctionalTestCase
         self::assertEquals(2560, $metadata->width);
         self::assertEquals(1440, $metadata->height);
         self::assertEquals('https://i.vimeocdn.com/video/1126278547-62d60cb97656c3ca4efe48084e3f032850596215a2ff9453e463267dae43b6ec-d_1280?region=us', $metadata->thumbnailUrl);
-        self::assertEquals(130, $metadata->duration);
+        self::assertEquals(130, $metadata->tryGetNonStandardDuration());
     }
 }
