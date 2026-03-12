@@ -6,6 +6,7 @@ namespace Carbon\VideoPlatformEditor\Infrastructure;
 
 use Neos\Flow\Annotations as Flow;
 use Neos\Flow\Aop\JoinPointInterface;
+use Carbon\VideoPlatformEditor\Video;
 
 #[Flow\Aspect()]
 class AssetUsageExtractionAspect
