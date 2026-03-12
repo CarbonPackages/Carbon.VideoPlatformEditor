@@ -14,6 +14,7 @@ final readonly class Video implements \JsonSerializable
     public function __construct(
         public VimeoVideoId|YoutubeVideoId $id,
         public string $title,
+        public ?int $duration,
         public AspectRatio $aspectRatio,
         public ?AssetId $thumbnail,
     ) {
@@ -32,6 +33,7 @@ final readonly class Video implements \JsonSerializable
                 VideoPlatformType::YOUTUBE => YoutubeVideoId::fromArray($array['id']),
             },
             title: $array['title'],
+            duration: $array['duration'] ?? null,
             aspectRatio: is_string($array['aspectRatio']) ? AspectRatio::fromString($array['aspectRatio']) : AspectRatio::fromString($array['aspectRatio']['value']),
             thumbnail: isset($array['thumbnail']) ? AssetId::fromArray($array['thumbnail']) : null,
         );
@@ -44,6 +46,7 @@ final readonly class Video implements \JsonSerializable
             'platformType' => $this->platformType,
             'id' => $this->id,
             'title' => $this->title,
+            'duration' => $this->duration,
             'aspectRatio' => $this->aspectRatio,
             'thumbnail' => $this->thumbnail,
             // Uri is added to serialisation for presentation

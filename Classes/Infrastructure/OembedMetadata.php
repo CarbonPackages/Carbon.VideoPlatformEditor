@@ -26,7 +26,7 @@ final readonly class OembedMetadata
         /**
          * Non standard properties:
          */
-        public ?int $duration,
+        private mixed $duration,
     ) {
         if ($this->version !== '1.0') {
             throw new \RuntimeException(sprintf('Oembed version must be 1.0 got %s', $this->version), 1773254133);
@@ -47,5 +47,10 @@ final readonly class OembedMetadata
             html: $array['html'] ?? null,
             duration: $array['duration'] ?? null,
         );
+    }
+
+    public function tryGetNonStandardDuration(): ?int
+    {
+        return is_int($this->duration) ? $this->duration : null;
     }
 }

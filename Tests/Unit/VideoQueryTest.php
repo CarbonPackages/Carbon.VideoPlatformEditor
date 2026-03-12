@@ -2,7 +2,7 @@
 
 declare(strict_types=1);
 
-namespace Carbon\VideoPlatformEditor;
+namespace Carbon\VideoPlatformEditor\Tests\Unit;
 
 use Carbon\VideoPlatformEditor\Controller\VideoQuery;
 use PHPUnit\Framework\TestCase;

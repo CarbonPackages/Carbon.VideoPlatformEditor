@@ -2,8 +2,9 @@
 
 declare(strict_types=1);
 
-namespace Carbon\VideoPlatformEditor;
+namespace Carbon\VideoPlatformEditor\Tests\Unit;
 
+use Carbon\VideoPlatformEditor\AspectRatio;
 use PHPUnit\Framework\TestCase;
 
 class AspectRatioTest extends TestCase

@@ -10,6 +10,7 @@ use Carbon\VideoPlatformEditor\AssetId;
 use Carbon\VideoPlatformEditor\Infrastructure\ImageImporter;
 use Carbon\VideoPlatformEditor\Infrastructure\OembedHtmlExtractor;
 use Carbon\VideoPlatformEditor\Infrastructure\OembedMetadataProvider;
+use Carbon\VideoPlatformEditor\Infrastructure\YoutubeContentDetailsProvider;
 use Carbon\VideoPlatformEditor\Video;
 use Carbon\VideoPlatformEditor\VideoPlatformType;
 use Carbon\VideoPlatformEditor\VimeoVideoId;
@@ -30,6 +31,9 @@ class VideoPlatformController extends ActionController
 
     #[Flow\Inject]
     protected OembedMetadataProvider $oembedMetadataProvider;
+
+    #[Flow\Inject()]
+    protected YoutubeContentDetailsProvider $youtubeContentDetailsProvider;
 
     #[Flow\Route('neos/carbon/video-platform/video', httpMethods: ['POST'])]
     public function videoAction(): ResponseInterface
@@ -62,6 +66,16 @@ class VideoPlatformController extends ActionController
             VideoPlatformType::VIMEO => VimeoVideoId::fromEmbedUri($videoEmbedUri),
             VideoPlatformType::YOUTUBE => YoutubeVideoId::fromEmbedUri($videoEmbedUri),
         };
+
+        $videoDurationInSeconds = null;
+        if ($videoId instanceof YoutubeVideoId) {
+            $youtubeContentDetails = $this->youtubeContentDetailsProvider->provideForVideoId($videoId);
+            if ($youtubeContentDetails) {
+                $videoDurationInSeconds = $youtubeContentDetails->durationAsSeconds();
+            }
+        } else {
+            $videoDurationInSeconds = $oembedMetadata->tryGetNonStandardDuration();
+        }
 
         $thumbnailImageId = null;
         if ($oembedMetadata->thumbnailUrl) {
@@ -104,6 +118,7 @@ class VideoPlatformController extends ActionController
         $video = new Video(
             id: $videoId,
             title: $oembedMetadata->title ?? '',
+            duration: $videoDurationInSeconds,
             aspectRatio: ($oembedMetadata->width && $oembedMetadata->height) ? AspectRatio::create(
                 numerator: $oembedMetadata->width,
                 denominator: $oembedMetadata->height

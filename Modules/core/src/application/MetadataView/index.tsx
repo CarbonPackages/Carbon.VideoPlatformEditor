@@ -12,9 +12,11 @@ export function MetadataView(props: {video: IVideo}) {
                 <dt className={style.propertyLabel}>{translate('x:x:x', 'Title')}</dt>
                 <dd className={style.propertyValue}>{props.video.title}</dd>
 
+                <dt className={style.propertyLabel}>{translate('x:x:x', 'Duration')}</dt>
+                <dd className={style.propertyValue}>{props.video.duration ? convertSeconds(props.video.duration) : '-'}</dd>
+
                 <dt className={style.propertyLabel}>{translate('x:x:x', 'Aspect ratio')}</dt>
                 <dd className={style.propertyValue}>{props.video.aspectRatio}</dd>
-
 
                 <dt className={style.propertyLabel}>{translate('x:x:x', 'Platform type')}</dt>
                 <dd className={style.propertyValue}>{props.video.platformType}</dd>
@@ -30,16 +32,17 @@ export function MetadataView(props: {video: IVideo}) {
 }
 
 const convertSeconds = (duration) => {
-    const twoDigits = (number) => `0${number}`.slice(-2);
+    const format = (number) => String(number).padStart(2, '0');
+
     const hours = ~~(duration / 3600);
     const minutes = ~~((duration % 3600) / 60);
     const seconds = duration % 60;
 
     if (hours) {
-        return `${hours}:${twoDigits(minutes)}:${twoDigits(seconds)}`;
+        return `${hours}:${format(minutes)}:${format(seconds)}`;
     }
     if (minutes) {
-        return `${minutes}:${twoDigits(seconds)}`;
+        return `${minutes}:${format(seconds)}`;
     }
     return seconds;
 };

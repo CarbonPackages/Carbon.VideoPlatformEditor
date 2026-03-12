@@ -18,4 +18,5 @@ export type IVideo = ({
     },
     aspectRatio: `${number} / ${number}`
     uri: string
+    duration: number
 }
